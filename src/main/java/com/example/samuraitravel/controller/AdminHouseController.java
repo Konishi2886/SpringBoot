@@ -40,14 +40,24 @@ public class AdminHouseController {
     }  
 
 
+     // @GetMapping("/{id}")
+     // public String show(@PathVariable(name = "id") Integer id, Model model) {
+     //     House house = houseRepository.getReferenceById(id);
+         
+     //     model.addAttribute("house", house);
+         
+     //     return "admin/houses/show";
+     // } 
+
      @GetMapping("/{id}")
      public String show(@PathVariable(name = "id") Integer id, Model model) {
-         House house = houseRepository.getReferenceById(id);
-         
-         model.addAttribute("house", house);
-         
-         return "admin/houses/show";
-     }    
+    	 
+    	    Optional<House> optionalHouse = houseRepository.findById(id);
+    	    
+	        model.addAttribute("house", optionalHouse.get());
+	        return "admin/houses/show";    	 
+     } 
+    
 }
 
 
